@@ -62,9 +62,9 @@ export function fetchTasksAction() {
 }
 
 export function fetchTasksSuccessAction(tasks) {
-  return { type: FETCH_TASKS, tasks };
+  return { type: FETCH_TASKS_SUCCESS, tasks };
 }
 
 export function fetchTasksFailedAction(errors) {
-  return { type: FETCH_TASKS, errors };
+  return { type: FETCH_TASKS_FAILED, errors };
 }
