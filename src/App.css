@@ -42,4 +42,5 @@ h3 {
   max-height: calc(100vh - (30px * 2));
   overflow: auto;
   height: 100vh;
+  position: relative;
 }
