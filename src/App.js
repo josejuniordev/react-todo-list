@@ -1,14 +1,34 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import { BrowserRouter, Switch, Route, Link, Router } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import DashboardPage from "./pages/DashboardPage";
 import TodoListPage from "./pages/TodoListPage";
 import { Icon, Layout, Menu } from "antd";
+import connect from 'react-redux/es/connect/connect';
+import { fetchTasksAction } from './ducks/tasks';
 
 const { Sider, Content } = Layout;
 
-function App() {
+function App(
+  {
+    callFetchTasks
+  }
+) {
   const selectedLink = window.location.pathname.replace('/', '') || 'home';
+  const [initialized, setInitialized] = useState(false);
+
+  useEffect(() => {
+    if (!initialized) {
+      initialize();
+    }
+
+    function initialize() {
+      callFetchTasks();
+      setInitialized(true);
+      console.log('inicializando')
+    }
+
+  }, [initialized]);
 
   return (
     <BrowserRouter>
@@ -31,8 +51,8 @@ function App() {
           <Content className="content">
             <article className="content-body">
               <Switch>
-                <Route exact path="/" component={DashboardPage} />
-                <Route path="/todo-list" component={TodoListPage} />
+                <Route exact path="/" component={() => <DashboardPage appInitialized={initialized} />} />
+                <Route path="/todo-list" component={() => <TodoListPage appInitialized={initialized} />} />
               </Switch>
             </article>
           </Content>
@@ -43,4 +63,21 @@ function App() {
   );
 }
 
-export default App;
+export default connect(
+  (
+    {
+      tasks
+    }
+  ) => {
+    return {
+      tasks
+    }
+  },
+  dispatch => {
+    return {
+      callFetchTasks() {
+        dispatch(fetchTasksAction());
+      }
+    }
+  }
+)(App);
