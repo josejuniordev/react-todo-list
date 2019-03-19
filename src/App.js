@@ -28,11 +28,13 @@ function App() {
           </Menu>
         </Sider>
         <Layout>
-          <Content style={{ margin: '0 16px' }}>
+          <Content className="content">
+            <article className="content-body">
               <Switch>
                 <Route exact path="/" component={DashboardPage} />
                 <Route path="/todo-list" component={TodoListPage} />
               </Switch>
+            </article>
           </Content>
         </Layout>
       </Layout>
