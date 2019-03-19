@@ -1,28 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Switch, Route, Link, Router } from "react-router-dom";
+import DashboardPage from "./pages/DashboardPage";
+import TodoListPage from "./pages/TodoListPage";
+import { Icon, Layout, Menu } from "antd";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+const { Sider, Content } = Layout;
+
+function App() {
+  const selectedLink = window.location.pathname.replace('/', '') || 'home';
+
+  return (
+    <BrowserRouter>
+      <Layout>
+        <Sider>
+          <div className="logo"></div>
+
+          <Menu theme="dark" defaultSelectedKeys={[selectedLink]} mode="inline">
+            <Menu.Item key="home">
+              <Icon type="pie-chart" />
+              <Link to="/"><span>Dashboard</span></Link>
+            </Menu.Item>
+            <Menu.Item key="todo-list">
+              <Icon type="desktop" />
+              <Link to="/todo-list"><span>Todo list</span></Link>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout>
+          <Content style={{ margin: '0 16px' }}>
+              <Switch>
+                <Route exact path="/" component={DashboardPage} />
+                <Route path="/todo-list" component={TodoListPage} />
+              </Switch>
+          </Content>
+        </Layout>
+      </Layout>
+    </BrowserRouter>
+
+  );
 }
 
 export default App;
