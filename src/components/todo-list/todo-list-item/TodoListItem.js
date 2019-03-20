@@ -6,10 +6,11 @@ import { taskStatus } from '../../../shared/tasksConstantes';
 
 export function TodoListItem ({ callDeleteTask, deleting, task }) {
   const date = new Date(task.createdAt);
-  const buttonIconType = task.status == taskStatus.PENDING ? 'stop' : 'check';
-  const buttonTitle = task.status == taskStatus.PENDING ? 'marcar como Feito!' : 'marcar como Pendente!';
+  const buttonIconType = task.status === taskStatus.PENDING ? 'check' : 'stop';
+  const buttonTitle = task.status === taskStatus.PENDING ? 'marcar como Feito!' : 'marcar como Pendente!';
   return (
     <Card
+      className={task.status === }
       key={task.id}
       title={date.toLocaleDateString()}
       actions={[

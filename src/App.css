@@ -44,3 +44,11 @@ h3 {
   height: 100vh;
   position: relative;
 }
+
+.toolbar-area {
+  margin-bottom: 15px;
+}
+
+.text-align-right {
+  text-align: right;
+}
