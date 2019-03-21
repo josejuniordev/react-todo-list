@@ -1,26 +1,24 @@
 import React, { Fragment, useEffect } from 'react';
 import AppHeader from "../components/generics/AppHeader";
 import { connect } from "react-redux";
-import { fetchTasksAction } from "../ducks/tasks";
+import { deleteTaskAction, toggleTaskStatusAction } from '../ducks/tasks';
 import TodoList from '../components/todo-list/TodoList';
 import { Button } from 'antd';
 
 function TodoListPage(
   {
-    tasks
+    tasks,
+    callToggleTaskStatus,
+    callDeleteTask,
   }
 ) {
 
-  useEffect(() => {
-   console.log('logou')
-  });
-
   function toggleCheckItemHandler(itemId) {
-    console.log('clicou', itemId)
+    callToggleTaskStatus(itemId);
   }
 
-  function deleteItemHandler() {
-    console.log('deletar')
+  function deleteItemHandler(itemId) {
+    callDeleteTask(itemId);
   }
 
   function editItemHandler() {
@@ -47,5 +45,15 @@ function TodoListPage(
 export default connect(
   ({tasks}) => {
     return {tasks}
-  }
+  },
+  (dispatch => {
+    return {
+      callToggleTaskStatus(taskId) {
+        dispatch(toggleTaskStatusAction(taskId));
+      },
+      callDeleteTask(taskId) {
+        dispatch(deleteTaskAction(taskId));
+      }
+    }
+  })
 )(TodoListPage);

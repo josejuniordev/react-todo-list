@@ -3,6 +3,9 @@
 export const FETCH_TASKS = 'FETCH_TASKS';
 export const FETCH_TASKS_SUCCESS = 'FETCH_TASKS_SUCCESS';
 export const FETCH_TASKS_FAILED = 'FETCH_TASKS_FAILED';
+export const UPDATE_TASKS_ON_LIST = 'UPDATE_TASKS_ON_LIST';
+export const TOGGLE_TASK_STATUS = 'TOGGLE_TASK_STATUS';
+export const DELETE_TASK = 'DELETE_TASK';
 
 // Initial state
 
@@ -50,6 +53,11 @@ export default function (state = INITIAL_STATE, action) {
           fetch: errors
         }
       };
+    case UPDATE_TASKS_ON_LIST:
+      return {
+        ...state,
+        data: tasks
+      };
     default:
       return state;
   }
@@ -67,4 +75,16 @@ export function fetchTasksSuccessAction(tasks) {
 
 export function fetchTasksFailedAction(errors) {
   return { type: FETCH_TASKS_FAILED, errors };
+}
+
+export function updateTasksOnListAction(tasks) {
+  return { type: UPDATE_TASKS_ON_LIST, tasks };
+}
+
+export function toggleTaskStatusAction(taskId) {
+  return { type: TOGGLE_TASK_STATUS, taskId };
+}
+
+export function deleteTaskAction(taskId) {
+  return { type: DELETE_TASK, taskId };
 }
