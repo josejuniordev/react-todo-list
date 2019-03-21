@@ -11,6 +11,9 @@ function TodoList(
         deletingForms,
         tasks,
         loading,
+        onToggleCheckItemHandler,
+        onDeleteItemHandler,
+        onEditItemHandler,
     }
 ) {
 
@@ -19,7 +22,12 @@ function TodoList(
     const renderTaskListItem = task => {
         return (
             <List.Item>
-                <TodoListItem task={task}/>
+                <TodoListItem
+                  task={task}
+                  onToggleCheckItem={onToggleCheckItemHandler}
+                  onDeleteItem={onDeleteItemHandler}
+                  onEditItem={onEditItemHandler}
+                />
             </List.Item>
         )
     };
@@ -37,9 +45,11 @@ function TodoList(
 }
 
 TodoList.propTypes = {
-    deletingForms: PropTypes.arrayOf(PropTypes.number).isRequired,
     tasks: PropTypes.arrayOf(PropTypes.instanceOf(Task)).isRequired,
-    loading: PropTypes.bool.isRequired
+    loading: PropTypes.bool.isRequired,
+    onToggleCheckItemHandler: PropTypes.func,
+    onDeleteItemHandler: PropTypes.func,
+    onEditItemHandler: PropTypes.func,
 };
 
 export default TodoList;

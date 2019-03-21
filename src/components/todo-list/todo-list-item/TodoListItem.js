@@ -4,24 +4,31 @@ import { Button, Card, Icon, List } from 'antd';
 import Task from '../../../classes/Task';
 import { taskStatus } from '../../../shared/tasksConstantes';
 
-export function TodoListItem ({ callDeleteTask, deleting, task }) {
+export function TodoListItem (
+  {
+    task,
+    onToggleCheckItem = () => {},
+    onDeleteItem = () => {},
+    onEditItem = () => {},
+  }
+) {
   const date = new Date(task.createdAt);
   const buttonIconType = task.status === taskStatus.PENDING ? 'check' : 'stop';
   const buttonTitle = task.status === taskStatus.PENDING ? 'marcar como Feito!' : 'marcar como Pendente!';
   return (
     <Card
-      className={task.status === }
+      className={task.status === taskStatus.DONE && '--is-done'}
       key={task.id}
       title={date.toLocaleDateString()}
       actions={[
         <span title={buttonTitle}>
-          <Icon type={buttonIconType} onClick={() => {}} />
+          <Icon type={buttonIconType} onClick={onToggleCheckItem} />
         </span>,
         <span title="editar">
-          <Icon type="edit" onClick={() => {}} />
+          <Icon type="edit" onClick={onEditItem} />
         </span>,
         <span title="excluir">
-          <Icon type="delete" onClick={() => {}} />
+          <Icon type="delete" onClick={onDeleteItem} />
         </span>
       ]}
       style={{ width: '100%', marginBottom: 15 }}
@@ -32,8 +39,10 @@ export function TodoListItem ({ callDeleteTask, deleting, task }) {
 }
 
 TodoListItem.propTypes = {
-  callDeleteTask: PropTypes.func.isRequired,
-  task: PropTypes.instanceOf(Task).isRequired
+  task: PropTypes.instanceOf(Task).isRequired,
+  onToggleCheckItem: PropTypes.func,
+  onDeleteItem: PropTypes.func,
+  onEditItem: PropTypes.func,
 };
 
 export default TodoListItem;

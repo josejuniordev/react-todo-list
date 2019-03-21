@@ -15,13 +15,31 @@ function TodoListPage(
    console.log('logou')
   });
 
+  function toggleCheckItemHandler() {
+    console.log('clicou')
+  }
+
+  function deleteItemHandler() {
+    console.log('deletar')
+  }
+
+  function editItemHandler() {
+    console.log('editar')
+  }
+
   return (
     <Fragment>
       <AppHeader title="Todo list"/>
       <div className="toolbar-area text-align-right">
         <Button type="primary" icon="plus">Nova task</Button>
       </div>
-      <TodoList tasks={tasks.data} loading={tasks.loading.fetch} />
+      <TodoList
+        tasks={tasks.data}
+        loading={tasks.loading.fetch}
+        onToggleCheckItemHandler={toggleCheckItemHandler}
+        onDeleteItemHandler={deleteItemHandler}
+        onEditItemHandler={editItemHandler}
+      />
     </Fragment>
   )
 }

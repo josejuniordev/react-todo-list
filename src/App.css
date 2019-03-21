@@ -52,3 +52,10 @@ h3 {
 .text-align-right {
   text-align: right;
 }
+
+
+/* cards styles */
+
+.--is-done {
+  opacity: .5;
+}
