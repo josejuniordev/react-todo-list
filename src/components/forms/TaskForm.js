@@ -11,6 +11,7 @@ import {
 import {delay, clearCharacters, onlyNumbers} from '../../utility/Utils';
 import { connect } from 'react-redux';
 import locale from 'antd/lib/date-picker/locale/pt_BR';
+import moment from 'moment';
 
 const Option = Select.Option;
 const sortBy = require('sort-by');
@@ -19,27 +20,16 @@ const TaskForm = (
   {
     form,
     setTaskFormRef,
-    indexers,
-    fields,
     resetTaskFormState,
     setResetTaskFormState,
-    editableField,
+    editableTask,
   }
 ) => {
   const [rules, setRules] = useState([]);
-  const [fileList, setFileList] = useState([]);
-  const [selectedFieldType, setSelectedFieldType] = useState('');
-  const [imagePreview, setImagePreview] = useState(null);
-  const [loadingImage, setLoadingImage] = useState(false);
-  const [isFieldChecked, setIsFieldChecked] = useState(false);
   const [preparingFormData, setPreparingFormData] = useState(false);
 
   const FormItem = Form.Item;
   const { getFieldDecorator } = form;
-
-  if (editableField) {
-    // filteredFields = filteredFields.filter(field => field.name !== editableField.name);
-  }
 
   useEffect(() => {
     setTaskFormRef(form);
@@ -53,148 +43,33 @@ const TaskForm = (
   }, [resetTaskFormState]);
 
   useEffect(() => {
-    if (editableField) {
+    if (editableTask) {
       delay(500).then(() => {
-        prepareFormToEdit(editableField);
+        prepareFormToEdit(editableTask);
       });
     }
-  }, [editableField]);
+  }, [editableTask]);
 
   function prepareFormToEdit(editableData) {
     setPreparingFormData(true);
 
     form.setFieldsValue({
-      'type': editableData.type,
+      'description': editableData.description,
       'id': editableData.id,
+      'time': moment(editableData.time),
+      'durationTime': editableData.durationTime,
+      'rememberTime': editableData.rememberTime,
     });
-    //
-    // onFieldTypeChangeHandler(editableData.type);
-    //
-    // if (editableData.type === fieldsTypes.IMAGE.id) {
-    //   form.setFieldsValue({'url': editableData.url});
-    //   setImagePreview(editableData.signedUrl || editableData.url);
-    //   setPreparingFormData(false);
-    //
-    // } else if(editableData.type === fieldsTypes.INDEXER.id) {
-    //   delay(200).then(() => {
-    //     form.setFieldsValue(
-    //       {
-    //         'indexerTypeId': editableData.indexerTypeId || '',
-    //         'label': editableData.label,
-    //         'required': editableData.required,
-    //         'rules': editableData.rules
-    //       }
-    //     );
-    //
-    //     setIsFieldChecked(editableData.required);
-    //     setRules(editableData.rules);
-    //
-    //     const rulesFields = {};
-    //
-    //     editableData.rules.forEach(rule => {
-    //       rulesFields[`reference-${rule.key}`] = rule.reference;
-    //       rulesFields[`type-${rule.key}`] = rule.type;
-    //       rulesFields[`value-${rule.key}`] = rule.value;
-    //     });
-    //
-    //     form.setFieldsValue(rulesFields);
-    //
-    //     setPreparingFormData(false);
-    //   });
-    // }
+
+    delay(500).then(() => {
+      setPreparingFormData(false);
+    });
   }
 
   function resetForm() {
     form.resetFields();
-    setRules([]);
-    setFileList([]);
-    setSelectedFieldType('');
-    setIsFieldChecked(false);
-    setImagePreview(null);
-    setLoadingImage(false);
     setResetTaskFormState(false);
   }
-
-  function deleteFieldRule(key) {
-    const rulesChanged = [...rules];
-    const ruleFound = rulesChanged.findIndex((item) => item.key === key );
-
-    if (ruleFound >= 0) {
-      rulesChanged.splice(ruleFound, 1);
-    }
-
-    form.setFieldsValue({'rules': rulesChanged});
-    setRules(rulesChanged);
-  }
-
-  function rulesFieldsChangeHandler(idx, attribute, value) {
-    const editedRules = [...rules];
-
-    switch (attribute) {
-      case 'reference':
-        editedRules[idx].setReference(value);
-        break;
-      case 'type':
-        editedRules[idx].setType(value);
-        break;
-      case 'value':
-        editedRules[idx].setValue(value);
-        break;
-    }
-
-    setRules(editedRules);
-    form.setFieldsValue({rules: editedRules});
-  }
-
-  function fieldLabelChangeHandler(event) {
-    let value = event.target.value;
-    const regex = new RegExp('[^a-zA-Z0-9_-]', 'g');
-    const friendlyName = value.replace(regex, '-').toLocaleLowerCase();
-
-    form.setFieldsValue({'name': friendlyName});
-  }
-
-  function validateFieldAlreadyInserted(value) {
-    return new Promise((resolve) => {
-      const thatFieldAlreadyExists = fields.find(field => field.label === value);
-
-      if (
-        editableField
-        && thatFieldAlreadyExists
-        && editableField.id === thatFieldAlreadyExists.id
-      ) {
-        resolve(false);
-        return;
-      }
-
-      if (thatFieldAlreadyExists) {
-        resolve(true);
-
-      } else {
-        resolve(false);
-      }
-    })
-  }
-
-
-  function onFieldTypeChangeHandler(value) {
-    setSelectedFieldType(value);
-  }
-
-  function removeFileFromList() {
-    setFileList([]);
-    form.setFieldsValue({ 'file': undefined });
-    setImagePreview(null);
-  }
-
-  // function renderRulesTypesOptions() {
-  //   return Object.values(rulesTypes)
-  //     .map(rule => {
-  //       if (rule.enabled) {
-  //         return <Option key={rule.id} value={rule.id}>{rule.label}</Option>
-  //       }
-  //     });
-  // }
 
   return (
     <Spin spinning={preparingFormData}>

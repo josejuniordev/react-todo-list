@@ -20,6 +20,7 @@ function TodoListPage(
   const [resetTaskFormState, setResetTaskFormState] = useState(false);
   const [showTaskFormModal, setShowTaskFormModal] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState(false);
+  const [editableTask, setEditableTask] = useState(false);
 
   function toggleCheckItemHandler(itemId) {
     callToggleTaskStatus(itemId);
@@ -31,17 +32,24 @@ function TodoListPage(
 
   function editItemHandler(itemId) {
     setTaskToEdit(itemId);
+    setEditableTask(tasks.data.find(task => task.id === itemId));
     setShowTaskFormModal(true);
   }
 
   function addNewTaskButtonClickHandler() {
-    setTaskToEdit(false);
+    clearEditableData();
     setShowTaskFormModal(true);
   }
 
   function onCancelTaskForm() {
     setResetTaskFormState(true);
+    clearEditableData();
     setShowTaskFormModal(false);
+  }
+
+  function clearEditableData() {
+    setTaskToEdit(false);
+    setEditableTask(false);
   }
 
   function saveTaskForm() {
@@ -51,7 +59,7 @@ function TodoListPage(
           values.time = values.time.toISOString();
 
           if (taskToEdit) {
-            callUpdateTask(values, taskToEdit);
+            callUpdateTask(values);
 
           } else {
             callInsertNewTask(values);
@@ -81,8 +89,7 @@ function TodoListPage(
         ]}
       >
         <TaskForm
-          // fields={fields}
-          // editableField={editableField ? editableField.field : null}
+          editableTask={editableTask && {...editableTask}}
           setTaskFormRef={setTaskFormRef}
           resetTaskFormState={resetTaskFormState}
           setResetTaskFormState={setResetTaskFormState}

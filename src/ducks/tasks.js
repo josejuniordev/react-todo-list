@@ -91,8 +91,8 @@ export function deleteTaskAction(taskId) {
   return { type: DELETE_TASK, taskId };
 }
 
-export function updateTaskAction(values, taskId) {
-  return { type: UPDATE_TASK, values, taskId };
+export function updateTaskAction(values) {
+  return { type: UPDATE_TASK, values };
 }
 
 export function insertNewTaskAction(values) {

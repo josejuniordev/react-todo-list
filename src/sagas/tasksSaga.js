@@ -37,6 +37,9 @@ function* fetchTasks() {
     console.log('tasks', tasks);
   } catch (errors) {
     put(fetchTasksFailedAction(errors));
+    notification.error({
+      message: taskMessages.FETCH_TASKS_FAILED
+    })
   }
 }
 
@@ -109,7 +112,7 @@ function* insertNewTask({values}) {
   }
 }
 
-function* updateTask({values, taskId}) {
+function* updateTask({values}) {
   try {
     const state = store.getState();
 
@@ -117,7 +120,7 @@ function* updateTask({values, taskId}) {
     let modifiedTasks = [...state.tasks.data];
 
     modifiedTasks = modifiedTasks.map(task => {
-      if (task.id === taskId) {
+      if (task.id === values.id) {
         return taskToSave;
       }
 

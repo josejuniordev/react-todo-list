@@ -12,4 +12,5 @@ export const taskMessages = {
   INSERT_NEW_TASK_SUCCESSFULLY: 'Item inserido com sucesso',
   INSERT_NEW_TASK_ERROR: 'O item não pode ser inserido.',
   UPDATE_TASK_ERROR: 'O item não pode ser atualizado.',
+  FETCH_TASKS_FAILED: 'Não foi possível obter a lista de items'
 }
