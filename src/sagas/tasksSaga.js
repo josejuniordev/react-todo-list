@@ -1,7 +1,9 @@
 import { fork, takeLatest, all, call, put } from 'redux-saga/effects';
-import { FETCH_TASKS, fetchTasksSuccessAction } from '../ducks/tasks';
+import { notification } from 'antd';
+import {FETCH_TASKS, fetchTasksFailedAction, fetchTasksSuccessAction} from '../ducks/tasks';
 import TasksAPI from '../integrations/TasksAPI';
 import Task from '../classes/Task';
+import {taskMessages} from "../shared/tasksConstantes";
 
 function* fetchTasks(action) {
   try {
@@ -23,7 +25,8 @@ function* fetchTasks(action) {
 
     console.log('tasks', tasks);
   } catch (errors) {
-    alert(errors)
+    notification.warning(taskMessages.LOAD_TASK_ERROR);
+    put(fetchTasksFailedAction(errors));
   }
 }
 

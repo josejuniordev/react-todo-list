@@ -35,7 +35,7 @@ function TodoList(
     return (
         <List
             grid={{
-                gutter: 16, column: 4,
+                gutter: 16, sm: 1, md: 2, lg: 3, xl: 4
             }}
             dataSource={sortedTasks}
             loading={loading}

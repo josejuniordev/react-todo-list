@@ -15,8 +15,8 @@ function TodoListPage(
    console.log('logou')
   });
 
-  function toggleCheckItemHandler() {
-    console.log('clicou')
+  function toggleCheckItemHandler(itemId) {
+    console.log('clicou', itemId)
   }
 
   function deleteItemHandler() {
