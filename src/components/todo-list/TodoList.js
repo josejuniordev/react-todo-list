@@ -17,7 +17,9 @@ function TodoList(
     }
 ) {
 
-    const sortedTasks = tasks.sort(sortBy('createdAt'));
+    const sortedTasks = tasks.sort(sortBy('-createdAt'));
+
+    console.log('sortedTasks', sortedTasks)
 
     const renderTaskListItem = task => {
         return (

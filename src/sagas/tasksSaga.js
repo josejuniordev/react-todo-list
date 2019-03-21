@@ -4,8 +4,8 @@ import {
   DELETE_TASK,
   FETCH_TASKS,
   fetchTasksFailedAction,
-  fetchTasksSuccessAction,
-  TOGGLE_TASK_STATUS,
+  fetchTasksSuccessAction, INSERT_NEW_TASK,
+  TOGGLE_TASK_STATUS, UPDATE_TASK,
   updateTasksOnListAction
 } from '../ducks/tasks';
 import TasksAPI from '../integrations/TasksAPI';
@@ -13,6 +13,8 @@ import Task from '../classes/Task';
 import { taskMessages } from "../shared/tasksConstantes";
 import TasksUtils from "../utility/TasksUtils";
 import store from "../store";
+import { Fragment } from 'react';
+import React from 'react';
 
 function* fetchTasks() {
   try {
@@ -82,6 +84,59 @@ function* deleteTask({taskId}) {
   }
 }
 
+function* insertNewTask({values}) {
+  try {
+    const state = store.getState();
+
+    let taskToSave = TasksUtils.taskFactory(values);
+
+    let modifiedTasks = [...state.tasks.data];
+
+    modifiedTasks.push(taskToSave);
+
+    yield put(updateTasksOnListAction(modifiedTasks));
+
+    notification.success({
+      message: taskMessages.INSERT_NEW_TASK_SUCCESSFULLY
+    });
+
+  } catch (errors) {
+    notification.warning({
+      message: taskMessages.INSERT_NEW_TASK_ERROR
+    });
+
+    console.log(errors)
+  }
+}
+
+function* updateTask({values, taskId}) {
+  try {
+    const state = store.getState();
+
+    let taskToSave = TasksUtils.taskFactory(values);
+    let modifiedTasks = [...state.tasks.data];
+
+    modifiedTasks = modifiedTasks.map(task => {
+      if (task.id === taskId) {
+        return taskToSave;
+      }
+
+      return task;
+    });
+
+    yield put(updateTasksOnListAction(modifiedTasks));
+
+    notification.success({
+      message: taskMessages.UPDATE_TASK_SUCCESSFULLY
+    });
+
+  } catch (errors) {
+    notification.warning({
+      message: taskMessages.UPDATE_TASK_ERROR
+    });
+  }
+}
+
 function* fetchTasksSaga() {
   yield takeLatest(FETCH_TASKS, fetchTasks);
 }
@@ -94,10 +149,20 @@ function* deleteTaskSaga() {
   yield takeLatest(DELETE_TASK, deleteTask);
 }
 
+function* insertNewTaskSaga() {
+  yield takeLatest(INSERT_NEW_TASK, insertNewTask);
+}
+
+function* updateTaskSaga() {
+  yield takeLatest(UPDATE_TASK, updateTask);
+}
+
 export default function* () {
   yield all([
     fork(fetchTasksSaga),
     fork(toggleTaskStatusSaga),
     fork(deleteTaskSaga),
+    fork(insertNewTaskSaga),
+    fork(updateTaskSaga),
   ])
 }

@@ -1,17 +1,25 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import AppHeader from "../components/generics/AppHeader";
 import { connect } from "react-redux";
-import { deleteTaskAction, toggleTaskStatusAction } from '../ducks/tasks';
+import { deleteTaskAction, insertNewTaskAction, toggleTaskStatusAction, updateTaskAction } from '../ducks/tasks';
 import TodoList from '../components/todo-list/TodoList';
-import { Button } from 'antd';
+import { Button, Modal } from 'antd';
+import TaskForm from '../components/forms/TaskForm';
 
 function TodoListPage(
   {
     tasks,
     callToggleTaskStatus,
     callDeleteTask,
+    callInsertNewTask,
+    callUpdateTask,
   }
 ) {
+
+  const [taskFormRef, setTaskFormRef] = useState(false);
+  const [resetTaskFormState, setResetTaskFormState] = useState(false);
+  const [showTaskFormModal, setShowTaskFormModal] = useState(false);
+  const [taskToEdit, setTaskToEdit] = useState(false);
 
   function toggleCheckItemHandler(itemId) {
     callToggleTaskStatus(itemId);
@@ -21,16 +29,65 @@ function TodoListPage(
     callDeleteTask(itemId);
   }
 
-  function editItemHandler() {
-    console.log('editar')
+  function editItemHandler(itemId) {
+    setTaskToEdit(itemId);
+    setShowTaskFormModal(true);
+  }
+
+  function addNewTaskButtonClickHandler() {
+    setTaskToEdit(false);
+    setShowTaskFormModal(true);
+  }
+
+  function onCancelTaskForm() {
+    setResetTaskFormState(true);
+    setShowTaskFormModal(false);
+  }
+
+  function saveTaskForm() {
+    if (taskFormRef) {
+      taskFormRef.validateFields((err, values) => {
+        if (!err) {
+          values.time = values.time.toISOString();
+
+          if (taskToEdit) {
+            callUpdateTask(values, taskToEdit);
+
+          } else {
+            callInsertNewTask(values);
+          }
+
+          onCancelTaskForm();
+        }
+      });
+    }
   }
 
   return (
     <Fragment>
       <AppHeader title="Todo list"/>
       <div className="toolbar-area text-align-right">
-        <Button type="primary" icon="plus">Nova task</Button>
+        <Button onClick={addNewTaskButtonClickHandler} type="primary" icon="plus">Nova task</Button>
       </div>
+      <Modal
+        visible={showTaskFormModal}
+        onCancel={onCancelTaskForm}
+        title={false ? 'Editando o item' : 'Novo item'}
+        style={{top: 30}}
+        bodyStyle={{maxHeight: '65vh', overflow: 'auto'}}
+        footer={[
+          <Button key="back" onClick={onCancelTaskForm}>Cancelar</Button>,
+          <Button key="submit" type="primary" onClick={saveTaskForm}>Salvar</Button>,
+        ]}
+      >
+        <TaskForm
+          // fields={fields}
+          // editableField={editableField ? editableField.field : null}
+          setTaskFormRef={setTaskFormRef}
+          resetTaskFormState={resetTaskFormState}
+          setResetTaskFormState={setResetTaskFormState}
+        />
+      </Modal>
       <TodoList
         tasks={tasks.data}
         loading={tasks.loading.fetch}
@@ -48,6 +105,12 @@ export default connect(
   },
   (dispatch => {
     return {
+      callInsertNewTask(values) {
+        dispatch(insertNewTaskAction(values));
+      },
+      callUpdateTask(values) {
+        dispatch(updateTaskAction(values));
+      },
       callToggleTaskStatus(taskId) {
         dispatch(toggleTaskStatusAction(taskId));
       },

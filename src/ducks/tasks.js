@@ -6,6 +6,8 @@ export const FETCH_TASKS_FAILED = 'FETCH_TASKS_FAILED';
 export const UPDATE_TASKS_ON_LIST = 'UPDATE_TASKS_ON_LIST';
 export const TOGGLE_TASK_STATUS = 'TOGGLE_TASK_STATUS';
 export const DELETE_TASK = 'DELETE_TASK';
+export const INSERT_NEW_TASK = 'INSERT_NEW_TASK';
+export const UPDATE_TASK = 'UPDATE_TASK';
 
 // Initial state
 
@@ -87,4 +89,12 @@ export function toggleTaskStatusAction(taskId) {
 
 export function deleteTaskAction(taskId) {
   return { type: DELETE_TASK, taskId };
+}
+
+export function updateTaskAction(values, taskId) {
+  return { type: UPDATE_TASK, values, taskId };
+}
+
+export function insertNewTaskAction(values) {
+  return { type: INSERT_NEW_TASK, values };
 }
