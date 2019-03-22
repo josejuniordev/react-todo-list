@@ -4,6 +4,7 @@ import { Button, Card, Icon, List } from 'antd';
 import Task from '../../../classes/Task';
 import { taskStatus } from '../../../shared/tasksConstantes';
 import LinesEllipsis from 'react-lines-ellipsis';
+import moment from 'moment';
 
 export function TodoListItem (
   {
@@ -13,10 +14,10 @@ export function TodoListItem (
     onEditItem = () => {},
   }
 ) {
-  const date = new Date(task.time);
+  const date = moment(task.time);
   const buttonIconType = task.status === taskStatus.PENDING ? 'check' : 'stop';
   const buttonTitle = task.status === taskStatus.PENDING ? 'marcar como Feito!' : 'marcar como Pendente!';
-  console.log(task.description, task.isLate())
+
   return (
     <Card
       className={[
@@ -24,7 +25,7 @@ export function TodoListItem (
         (task.isLate() && task.status !== taskStatus.DONE) && '--is-late'
       ]}
       key={task.id}
-      title={date.toLocaleDateString()}
+      title={date.format("DD/MM/YYYY")}
       actions={[
         <span title={buttonTitle}>
           <Icon type={buttonIconType} onClick={() => onToggleCheckItem(task.id)} />

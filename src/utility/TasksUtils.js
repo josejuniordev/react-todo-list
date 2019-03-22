@@ -1,5 +1,6 @@
-import {taskStatus} from "../shared/tasksConstantes";
+import { filterTasksMode, taskStatus } from '../shared/tasksConstantes';
 import Task from '../classes/Task';
+import filterMethods from '../shared/tasksFilterMethods';
 
 class TasksUtils {
   static toggleStatus(status) {
@@ -18,6 +19,30 @@ class TasksUtils {
       values.id
     );
   }
+
+  static filterBy(data, method) {
+    const sortBy = require('sort-by');
+    const sortedData = data.sort(sortBy('time'));
+
+    const filteredData = filterMethods[method]
+                          ? filterMethods[method](sortedData)
+                          : sortedData;
+
+    return new Promise((resolve) => {
+      resolve(filteredData);
+    });
+  }
+
+  static filterByTime(data, method) {
+    const filteredData = filterMethods[method]
+      ? filterMethods[method](data)
+      : data;
+
+    return new Promise((resolve) => {
+      resolve(filteredData);
+    });
+  }
+
 }
 
 export default TasksUtils;

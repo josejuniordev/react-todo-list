@@ -4,8 +4,6 @@ import { List } from 'antd';
 import TodoListItem from './todo-list-item/TodoListItem';
 import Task from '../../classes/Task';
 
-const sortBy = require('sort-by');
-
 function TodoList(
     {
         tasks,
@@ -16,7 +14,6 @@ function TodoList(
     }
 ) {
 
-    const sortedTasks = tasks.sort(sortBy('time'));
 
     const renderTaskListItem = task => {
         return (
@@ -36,7 +33,7 @@ function TodoList(
             grid={{
                 gutter: 16, sm: 1, md: 2, lg: 3, xl: 4
             }}
-            dataSource={sortedTasks}
+            dataSource={tasks}
             loading={loading}
             locale={{emptyText: 'Nenhuma task foi encontrada'}}
             renderItem={renderTaskListItem}/>

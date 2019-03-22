@@ -13,4 +13,13 @@ export const taskMessages = {
   INSERT_NEW_TASK_ERROR: 'O item não pode ser inserido.',
   UPDATE_TASK_ERROR: 'O item não pode ser atualizado.',
   FETCH_TASKS_FAILED: 'Não foi possível obter a lista de items'
-}
+};
+
+export const filterTasksMode = {
+  ALL: 'all',
+  DONE: 'done',
+  PENDING: 'pending',
+  TODAY: 'today',
+  THIS_WEEK: 'thisweek',
+  THIS_MONTH: 'thismonth'
+};

@@ -5,6 +5,7 @@ import { deleteTaskAction, insertNewTaskAction, toggleTaskStatusAction, updateTa
 import TodoList from '../components/todo-list/TodoList';
 import { Button, Modal } from 'antd';
 import TaskForm from '../components/forms/TaskForm';
+import TodoListFilter from '../components/todo-list/todo-list-filter/TodoListFilter';
 
 function TodoListPage(
   {
@@ -16,12 +17,12 @@ function TodoListPage(
     callUpdateTask,
   }
 ) {
-
   const [taskFormRef, setTaskFormRef] = useState(false);
   const [resetTaskFormState, setResetTaskFormState] = useState(false);
   const [showTaskFormModal, setShowTaskFormModal] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState(false);
   const [editableTask, setEditableTask] = useState(false);
+  const [filteredTasks, setFilteredTasks] = useState(tasks.data);
 
   function toggleCheckItemHandler(itemId) {
     callToggleTaskStatus(itemId);
@@ -97,8 +98,16 @@ function TodoListPage(
           setResetTaskFormState={setResetTaskFormState}
         />
       </Modal>
+
+      <div className="toolbar-area">
+        <TodoListFilter
+          tasks={tasks.data}
+          onFilter={setFilteredTasks}
+        />
+      </div>
+
       <TodoList
-        tasks={tasks.data}
+        tasks={filteredTasks}
         loading={tasks.loading.fetch}
         onToggleCheckItemHandler={toggleCheckItemHandler}
         onDeleteItemHandler={deleteItemHandler}
