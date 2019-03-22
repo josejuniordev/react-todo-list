@@ -59,3 +59,7 @@ h3 {
 .--is-done {
   opacity: .5;
 }
+
+.--is-late {
+  border: 1px solid #b00;
+}

@@ -13,12 +13,16 @@ export function TodoListItem (
     onEditItem = () => {},
   }
 ) {
-  const date = new Date(task.createdAt);
+  const date = new Date(task.time);
   const buttonIconType = task.status === taskStatus.PENDING ? 'check' : 'stop';
   const buttonTitle = task.status === taskStatus.PENDING ? 'marcar como Feito!' : 'marcar como Pendente!';
+  console.log(task.description, task.isLate())
   return (
     <Card
-      className={task.status === taskStatus.DONE && '--is-done'}
+      className={[
+        task.status === taskStatus.DONE && '--is-done',
+        (task.isLate() && task.status !== taskStatus.DONE) && '--is-late'
+      ]}
       key={task.id}
       title={date.toLocaleDateString()}
       actions={[
@@ -35,6 +39,7 @@ export function TodoListItem (
       style={{ width: '100%', marginBottom: 15 }}
     >
       <LinesEllipsis
+        style={{minHeight: '70px'}}
         text={task.description}
         maxLine={3}
       />

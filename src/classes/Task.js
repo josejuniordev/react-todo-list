@@ -23,4 +23,12 @@ export default class Task {
     this.createdAt = now;
     this.id = id ? +id : date.getTime();
   }
+
+  isLate() {
+    const time = +new Date(this.time);
+    const now = +new Date();
+
+    return (time - now) < 0;
+  }
+
 }
