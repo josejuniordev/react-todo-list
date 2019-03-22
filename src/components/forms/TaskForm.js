@@ -60,6 +60,7 @@ const TaskForm = (
       'time': moment(editableData.time),
       'durationTime': editableData.durationTime,
       'rememberTime': editableData.rememberTime,
+      'tags': editableData.tags,
     });
 
     delay(500).then(() => {

@@ -99,8 +99,6 @@ function* insertNewTask({values}) {
     notification.warning({
       message: taskMessages.INSERT_NEW_TASK_ERROR
     });
-
-    console.log(errors)
   }
 }
 
