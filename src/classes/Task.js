@@ -11,6 +11,6 @@ export default class Task {
     this.durationTime = durationTime;
     this.rememberTime = rememberTime;
     this.createdAt = now;
-    this.id = id ? id : date.getTime();
+    this.id = id ? +id : date.getTime();
   }
 }

@@ -7,6 +7,6 @@ export default class Tag {
 
     this.name = name;
     this.createdAt = now;
-    this.id = id ? id : date.getTime();
+    this.id = id ? +id : date.getTime();
   }
 }

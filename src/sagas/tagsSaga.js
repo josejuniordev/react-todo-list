@@ -21,11 +21,7 @@ function* fetchTags() {
     let tags = yield call(TagsAPI.fetchTags);
 
     tags = yield tags.map(tag => {
-      return new Tag(
-        tag.name,
-        tag.createdAt,
-        tag.id
-      );
+      return TagsUtils.tagFactory(tag);
     });
 
     yield put(fetchTagsSuccessAction(tags));

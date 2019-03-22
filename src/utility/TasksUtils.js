@@ -8,11 +8,13 @@ class TasksUtils {
 
   static taskFactory(values) {
     return new Task(
-      taskStatus.PENDING,
+      values.status || taskStatus.PENDING,
       values.description,
       values.time,
       values.durationTime,
-      values.rememberTime
+      values.rememberTime,
+      values.createdAt,
+      values.id
     );
   }
 }

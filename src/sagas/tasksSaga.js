@@ -21,15 +21,7 @@ function* fetchTasks() {
     let tasks = yield call(TasksAPI.fetchTasks);
 
     tasks = yield tasks.map(task => {
-      return new Task(
-        task.status,
-        task.description,
-        task.time,
-        task.durationTime,
-        task.rememberTime,
-        task.createdAt,
-        task.id
-      );
+      return TasksUtils.taskFactory(task);
     });
 
     yield put(fetchTasksSuccessAction(tasks));

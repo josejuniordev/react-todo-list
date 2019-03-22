@@ -58,6 +58,8 @@ function TodoListPage(
       taskFormRef.validateFields((err, values) => {
         if (!err) {
           values.time = values.time.toISOString();
+          console.log(values)
+          return;
 
           if (taskToEdit) {
             callUpdateTask(values);
