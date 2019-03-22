@@ -13,6 +13,7 @@ class TasksUtils {
       values.time,
       values.durationTime,
       values.rememberTime,
+      values.tags,
       values.createdAt,
       values.id
     );
