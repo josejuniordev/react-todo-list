@@ -9,12 +9,9 @@ import {
   updateTagsOnListAction
 } from '../ducks/tags';
 import TagsAPI from '../integrations/TagsAPI';
-import Tag from '../classes/Tag';
 import { tagMessages } from "../shared/tagsConstantes";
 import TagsUtils from "../utility/TagsUtils";
 import store from "../store";
-import { Fragment } from 'react';
-import React from 'react';
 
 function* fetchTags() {
   try {

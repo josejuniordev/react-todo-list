@@ -1,4 +1,4 @@
-import { filterTasksMode, taskStatus } from '../shared/tasksConstantes';
+import { taskStatus } from '../shared/tasksConstantes';
 import Task from '../classes/Task';
 import filterMethods from '../shared/tasksFilterMethods';
 

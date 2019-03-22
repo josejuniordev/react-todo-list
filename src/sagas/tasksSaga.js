@@ -9,12 +9,9 @@ import {
   updateTasksOnListAction
 } from '../ducks/tasks';
 import TasksAPI from '../integrations/TasksAPI';
-import Task from '../classes/Task';
 import { taskMessages } from "../shared/tasksConstantes";
 import TasksUtils from "../utility/TasksUtils";
 import store from "../store";
-import { Fragment } from 'react';
-import React from 'react';
 
 function* fetchTasks() {
   try {

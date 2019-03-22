@@ -1,6 +1,4 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import Task from '../../../classes/Task';
 import { filterTasksMode } from '../../../shared/tasksConstantes';
 import TasksUtils from '../../../utility/TasksUtils';
 import { Radio } from 'antd';

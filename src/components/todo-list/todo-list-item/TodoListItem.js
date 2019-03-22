@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card, Icon, List } from 'antd';
+import { Card, Icon } from 'antd';
 import Task from '../../../classes/Task';
 import { taskStatus } from '../../../shared/tasksConstantes';
 import LinesEllipsis from 'react-lines-ellipsis';

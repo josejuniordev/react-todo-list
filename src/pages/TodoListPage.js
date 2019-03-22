@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import AppHeader from "../components/generics/AppHeader";
 import { connect } from "react-redux";
 import { deleteTaskAction, insertNewTaskAction, toggleTaskStatusAction, updateTaskAction } from '../ducks/tasks';

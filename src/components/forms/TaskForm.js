@@ -1,20 +1,17 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Form,
   Row,
   Col,
   Select,
-  Button,
   Input,
-  Spin, Checkbox, Upload, Icon, DatePicker, InputNumber, AutoComplete
+  Spin, DatePicker, InputNumber
 } from 'antd';
-import {delay, clearCharacters, onlyNumbers} from '../../utility/Utils';
-import { connect } from 'react-redux';
+import {delay, } from '../../utility/Utils';
 import locale from 'antd/lib/date-picker/locale/pt_BR';
 import moment from 'moment';
 
 const Option = Select.Option;
-const sortBy = require('sort-by');
 
 const TaskForm = (
   {
@@ -26,7 +23,6 @@ const TaskForm = (
     tags,
   }
 ) => {
-  const [rules, setRules] = useState([]);
   const [preparingFormData, setPreparingFormData] = useState(false);
 
   const FormItem = Form.Item;

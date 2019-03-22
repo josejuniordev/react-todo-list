@@ -1,5 +1,4 @@
 import { filterTasksMode, taskStatus } from './tasksConstantes';
-import { aDay } from './timeConstants';
 import moment from 'moment';
 
 const methods = {};

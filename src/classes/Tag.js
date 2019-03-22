@@ -1,5 +1,3 @@
-import { tagStatus } from '../shared/tagsConstantes';
-
 export default class Tag {
   constructor(name, createdAt = false, id = false) {
     const date = createdAt ? new Date(createdAt) : new Date();
