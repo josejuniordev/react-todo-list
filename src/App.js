@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import DashboardPage from "./pages/DashboardPage";
 import TodoListPage from "./pages/TodoListPage";
 import { Icon, Layout, Menu } from "antd";
-import connect from 'react-redux/es/connect/connect';
+import { connect } from 'react-redux';
 import { fetchTasksAction } from './ducks/tasks';
 import { fetchTagsAction } from './ducks/tags';
 
