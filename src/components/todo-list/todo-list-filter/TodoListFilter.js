@@ -25,7 +25,7 @@ function TodoListFilter(
   }
 
   function filterDataByTime() {
-    TasksUtils.filterByTime(filteredData, filterByTime)
+    TasksUtils.filterBy(filteredData, filterByTime)
       .then(data => {
         onFilter(data);
       });

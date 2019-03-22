@@ -21,28 +21,14 @@ class TasksUtils {
   }
 
   static filterBy(data, method) {
-    const sortBy = require('sort-by');
-    const sortedData = data.sort(sortBy('time'));
-
     const filteredData = filterMethods[method]
-                          ? filterMethods[method](sortedData)
-                          : sortedData;
+                          ? filterMethods[method](data)
+                          : data;
 
     return new Promise((resolve) => {
       resolve(filteredData);
     });
   }
-
-  static filterByTime(data, method) {
-    const filteredData = filterMethods[method]
-      ? filterMethods[method](data)
-      : data;
-
-    return new Promise((resolve) => {
-      resolve(filteredData);
-    });
-  }
-
 }
 
 export default TasksUtils;

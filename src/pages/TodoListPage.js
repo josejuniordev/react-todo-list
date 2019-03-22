@@ -17,12 +17,15 @@ function TodoListPage(
     callUpdateTask,
   }
 ) {
+  const sortBy = require('sort-by');
+  const sorteredTasks = tasks.data.sort(sortBy('time'));
+
   const [taskFormRef, setTaskFormRef] = useState(false);
   const [resetTaskFormState, setResetTaskFormState] = useState(false);
   const [showTaskFormModal, setShowTaskFormModal] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState(false);
   const [editableTask, setEditableTask] = useState(false);
-  const [filteredTasks, setFilteredTasks] = useState(tasks.data);
+  const [filteredTasks, setFilteredTasks] = useState(sorteredTasks);
 
   function toggleCheckItemHandler(itemId) {
     callToggleTaskStatus(itemId);
@@ -101,7 +104,7 @@ function TodoListPage(
 
       <div className="toolbar-area">
         <TodoListFilter
-          tasks={tasks.data}
+          tasks={sorteredTasks}
           onFilter={setFilteredTasks}
         />
       </div>
