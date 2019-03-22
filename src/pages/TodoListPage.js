@@ -9,6 +9,7 @@ import TaskForm from '../components/forms/TaskForm';
 function TodoListPage(
   {
     tasks,
+    tags,
     callToggleTaskStatus,
     callDeleteTask,
     callInsertNewTask,
@@ -89,6 +90,7 @@ function TodoListPage(
         ]}
       >
         <TaskForm
+          tags={tags.data}
           editableTask={editableTask && {...editableTask}}
           setTaskFormRef={setTaskFormRef}
           resetTaskFormState={resetTaskFormState}
@@ -107,8 +109,8 @@ function TodoListPage(
 }
 
 export default connect(
-  ({tasks}) => {
-    return {tasks}
+  ({tasks, tags}) => {
+    return {tasks, tags}
   },
   (dispatch => {
     return {

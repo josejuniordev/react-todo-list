@@ -6,7 +6,7 @@ import {
   Select,
   Button,
   Input,
-  Spin, Checkbox, Upload, Icon, DatePicker, InputNumber
+  Spin, Checkbox, Upload, Icon, DatePicker, InputNumber, AutoComplete
 } from 'antd';
 import {delay, clearCharacters, onlyNumbers} from '../../utility/Utils';
 import { connect } from 'react-redux';
@@ -23,6 +23,7 @@ const TaskForm = (
     resetTaskFormState,
     setResetTaskFormState,
     editableTask,
+    tags,
   }
 ) => {
   const [rules, setRules] = useState([]);
@@ -69,6 +70,10 @@ const TaskForm = (
   function resetForm() {
     form.resetFields();
     setResetTaskFormState(false);
+  }
+
+  function renderTagsOptions() {
+    return tags.map(tag => <Option key={tag.id} value={tag.id}>{tag.name}</Option>);
   }
 
   return (
@@ -124,6 +129,27 @@ const TaskForm = (
             </FormItem>
           </Col>
         </Row>
+        {
+          tags && tags.length
+            && (
+            <Row gutter={15}>
+              <Col sm={24}>
+                <FormItem label="Tags">
+                  {getFieldDecorator('tags')(
+                    <Select
+                      mode="multiple"
+                      style={{ width: '100%' }}
+                      placeholder="Por favor selecione"
+                      optionFilterProp="children"
+                    >
+                      {renderTagsOptions()}
+                    </Select>
+                  )}
+                </FormItem>
+              </Col>
+            </Row>
+            )
+        }
       </Form>
     </Spin>
   );

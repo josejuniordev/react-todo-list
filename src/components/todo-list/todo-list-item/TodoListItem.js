@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Card, Icon, List } from 'antd';
 import Task from '../../../classes/Task';
 import { taskStatus } from '../../../shared/tasksConstantes';
+import LinesEllipsis from 'react-lines-ellipsis';
 
 export function TodoListItem (
   {
@@ -33,7 +34,10 @@ export function TodoListItem (
       ]}
       style={{ width: '100%', marginBottom: 15 }}
     >
-      { task.description }
+      <LinesEllipsis
+        text={task.description}
+        maxLine={3}
+      />
     </Card>
   );
 }

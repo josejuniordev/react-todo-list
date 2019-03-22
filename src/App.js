@@ -6,12 +6,14 @@ import TodoListPage from "./pages/TodoListPage";
 import { Icon, Layout, Menu } from "antd";
 import connect from 'react-redux/es/connect/connect';
 import { fetchTasksAction } from './ducks/tasks';
+import { fetchTagsAction } from './ducks/tags';
 
 const { Sider, Content } = Layout;
 
 function App(
   {
-    callFetchTasks
+    callFetchTasks,
+    callFetchTags
   }
 ) {
   const selectedLink = window.location.pathname.replace('/', '') || 'home';
@@ -24,8 +26,8 @@ function App(
 
     function initialize() {
       callFetchTasks();
+      callFetchTags();
       setInitialized(true);
-      console.log('inicializando')
     }
 
   }, [initialized]);
@@ -77,6 +79,9 @@ export default connect(
     return {
       callFetchTasks() {
         dispatch(fetchTasksAction());
+      },
+      callFetchTags() {
+        dispatch(fetchTagsAction());
       }
     }
   }

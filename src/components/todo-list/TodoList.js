@@ -8,7 +8,6 @@ const sortBy = require('sort-by');
 
 function TodoList(
     {
-        deletingForms,
         tasks,
         loading,
         onToggleCheckItemHandler,
