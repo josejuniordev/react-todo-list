@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-import DashboardPage from "./pages/DashboardPage";
-import TodoListPage from "./pages/TodoListPage";
-import { Icon, Layout, Menu } from "antd";
+import { Icon, Layout, Menu, Spin } from 'antd';
 import { connect } from 'react-redux';
 import { fetchTasksAction } from './ducks/tasks';
 import { fetchTagsAction } from './ducks/tags';
+import { Suspense, lazy } from 'react';
+
+const DashboardPage =  lazy(() => import("./pages/DashboardPage"));
+const TodoListPage = lazy(() => import("./pages/TodoListPage"));
 
 const { Sider, Content } = Layout;
 
@@ -52,10 +54,14 @@ function App(
         <Layout>
           <Content className="content">
             <article className="content-body">
-              <Switch>
-                <Route exact path="/" component={() => <DashboardPage appInitialized={initialized} />} />
-                <Route path="/todo-list" component={() => <TodoListPage appInitialized={initialized} />} />
-              </Switch>
+              <Suspense
+                fallback={<Spin />}
+              >
+                <Switch>
+                  <Route exact path="/" component={() => <DashboardPage appInitialized={initialized} />} />
+                  <Route path="/todo-list" component={() => <TodoListPage appInitialized={initialized} />} />
+                </Switch>
+              </Suspense>
             </article>
           </Content>
         </Layout>
