@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { filterTasksMode } from '../../../shared/tasksConstantes';
 import TasksUtils from '../../../utility/TasksUtils';
 import { Radio } from 'antd';
+import { delay } from '../../../utility/Utils';
 
 function TodoListFilter(
   {
@@ -39,6 +40,10 @@ function TodoListFilter(
 
   useEffect(() => {
     filterData();
+
+    if (filterByTime !== filterTasksMode.ALL) {
+      filterDataByTime();
+    }
   }, [filterBy]);
 
   useEffect(() => {
