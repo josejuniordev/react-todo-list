@@ -1,11 +1,12 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, lazy, Suspense, useState } from 'react';
 import AppHeader from "../components/generics/AppHeader";
 import { connect } from "react-redux";
 import { deleteTaskAction, insertNewTaskAction, toggleTaskStatusAction, updateTaskAction } from '../ducks/tasks';
 import TodoList from '../components/todo-list/TodoList';
-import { Button, Modal } from 'antd';
-import TaskForm from '../components/forms/TaskForm';
+import { Button, Modal, Spin } from 'antd';
 import TodoListFilter from '../components/todo-list/todo-list-filter/TodoListFilter';
+
+const TaskForm = lazy(() => import('../components/forms/TaskForm'));
 
 function TodoListPage(
   {
@@ -93,13 +94,17 @@ function TodoListPage(
           <Button key="submit" type="primary" onClick={saveTaskForm}>Salvar</Button>,
         ]}
       >
-        <TaskForm
-          tags={tags.data}
-          editableTask={editableTask && {...editableTask}}
-          setTaskFormRef={setTaskFormRef}
-          resetTaskFormState={resetTaskFormState}
-          setResetTaskFormState={setResetTaskFormState}
-        />
+        <Suspense
+          fallback={<Spin />}
+        >
+          <TaskForm
+            tags={tags.data}
+            editableTask={editableTask && {...editableTask}}
+            setTaskFormRef={setTaskFormRef}
+            resetTaskFormState={resetTaskFormState}
+            setResetTaskFormState={setResetTaskFormState}
+          />
+        </Suspense>
       </Modal>
 
       <div className="toolbar-area">
