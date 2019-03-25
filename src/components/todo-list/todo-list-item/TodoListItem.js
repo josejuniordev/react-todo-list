@@ -21,6 +21,7 @@ export function TodoListItem (
   return (
     <Card
       className={[
+        'task-card',
         task.status === taskStatus.DONE && '--is-done',
         (task.isLate() && task.status !== taskStatus.DONE) && '--is-late'
       ]}
