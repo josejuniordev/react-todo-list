@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import TagClass from '../../classes/Tag';
 import { Icon, Input, Tag, Tooltip } from 'antd';

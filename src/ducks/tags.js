@@ -9,7 +9,7 @@ export const INSERT_NEW_TAG = 'INSERT_NEW_TAG';
 
 // Initial state
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   data: [],
   errors: {
     fetch: []

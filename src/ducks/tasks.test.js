@@ -59,7 +59,7 @@ describe('(Ducks) Tasks', () => {
 
   describe('Reducer', () => {
 
-    it('returns state even if the action is unknown', () => {
+    it('returns the current state ever the action is unknown', () => {
       const state = {
         data: []
       };

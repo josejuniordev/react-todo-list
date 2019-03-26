@@ -23,7 +23,6 @@ function* fetchTasks() {
 
     yield put(fetchTasksSuccessAction(tasks));
 
-    console.log('tasks', tasks);
   } catch (errors) {
     put(fetchTasksFailedAction(errors));
     notification.error({

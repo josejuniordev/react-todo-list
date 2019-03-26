@@ -22,7 +22,6 @@ function* fetchTags() {
 
     yield put(fetchTagsSuccessAction(tags));
 
-    console.log('tags', tags);
   } catch (errors) {
     put(fetchTagsFailedAction(errors));
     notification.error({

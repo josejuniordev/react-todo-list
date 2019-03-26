@@ -13,12 +13,10 @@ function TagsPage(
 ) {
 
   function insertTagHandler(name) {
-    console.log(name)
     callInsertNewTag({name});
   }
 
   function closeTagHandler(id) {
-    console.log('excluindo', id);
     callDeleteTag(id);
   }
 
