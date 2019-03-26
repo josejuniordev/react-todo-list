@@ -9,6 +9,7 @@ let inputRef = React.createRef();
 function TagsForm(
   {
     tags = [],
+    blockTheFirstTag = true,
     onTagClose = () => {},
     onInsertTag = () => {},
   }
@@ -47,10 +48,16 @@ function TagsForm(
       {
         tags.map((tag, index) => {
           const isLongTag = tag.length > 20;
+          let isClosable = index !== 0;
+
+          if (!blockTheFirstTag) {
+            isClosable = true;
+          }
+
           const tagElement = (
             <Tag
               key={tag.id}
-              closable={index !== 0}
+              closable={isClosable}
               afterClose={() => onTagClose(tag.id)}
             >
               {isLongTag ? `${tag.name.slice(0, 20)}...` : tag.name}
@@ -87,6 +94,7 @@ function TagsForm(
 
 TagsForm.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.instanceOf(TagClass)).isRequired,
+  blockTheFirstTag: PropTypes.bool,
   onTagClose: PropTypes.func,
   onInsertTag: PropTypes.func,
 };
