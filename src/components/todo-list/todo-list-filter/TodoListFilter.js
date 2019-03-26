@@ -32,6 +32,9 @@ function TodoListFilter(
 
   function onFilterModeHandler(ev) {
     setFilterBy(ev.target.value);
+    delay(300).then(() => {
+      setFilterByTime(filterTasksMode.ALL);
+    });
   }
 
   function onFilterByTimeHandler(ev) {
@@ -40,10 +43,6 @@ function TodoListFilter(
 
   useEffect(() => {
     filterData();
-
-    if (filterByTime !== filterTasksMode.ALL) {
-      filterDataByTime();
-    }
   }, [filterBy]);
 
   useEffect(() => {
