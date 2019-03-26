@@ -1,8 +1,10 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { filterTasksMode } from '../../../shared/tasksConstantes';
 import TasksUtils from '../../../utility/TasksUtils';
 import { Radio } from 'antd';
 import { delay } from '../../../utility/Utils';
+import Task from '../../../classes/Task';
 
 function TodoListFilter(
   {
@@ -72,9 +74,9 @@ function TodoListFilter(
   );
 }
 
-// TodoListFilter.propTypes = {
-//   tasks: PropTypes.arrayOf(Task).isRequired,
-//   onFilter: PropTypes.func
-// };
+TodoListFilter.propTypes = {
+  tasks: PropTypes.arrayOf(PropTypes.instanceOf(Task)).isRequired,
+  onFilter: PropTypes.func
+};
 
 export default TodoListFilter;
