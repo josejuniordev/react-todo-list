@@ -9,6 +9,7 @@ import { Suspense, lazy } from 'react';
 
 const DashboardPage =  lazy(() => import("./pages/DashboardPage"));
 const TodoListPage = lazy(() => import("./pages/TodoListPage"));
+const TagsPage = lazy(() => import("./pages/TagsPage"));
 
 const { Sider, Content } = Layout;
 
@@ -49,6 +50,10 @@ function App(
               <Icon type="desktop" />
               <Link to="/todo-list"><span>Todo list</span></Link>
             </Menu.Item>
+            <Menu.Item key="tags">
+              <Icon type="tags" />
+              <Link to="/tags"><span>Tags</span></Link>
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout>
@@ -60,6 +65,7 @@ function App(
                 <Switch>
                   <Route exact path="/" component={() => <DashboardPage appInitialized={initialized} />} />
                   <Route path="/todo-list" component={() => <TodoListPage appInitialized={initialized} />} />
+                  <Route path="/tags" component={() => <TagsPage appInitialized={initialized} />} />
                 </Switch>
               </Suspense>
             </article>

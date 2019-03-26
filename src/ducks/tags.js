@@ -4,10 +4,8 @@ export const FETCH_TAGS = 'FETCH_TAGS';
 export const FETCH_TAGS_SUCCESS = 'FETCH_TAGS_SUCCESS';
 export const FETCH_TAGS_FAILED = 'FETCH_TAGS_FAILED';
 export const UPDATE_TAGS_ON_LIST = 'UPDATE_TAGS_ON_LIST';
-export const TOGGLE_TAG_STATUS = 'TOGGLE_TAG_STATUS';
 export const DELETE_TAG = 'DELETE_TAG';
 export const INSERT_NEW_TAG = 'INSERT_NEW_TAG';
-export const UPDATE_TAG = 'UPDATE_TAG';
 
 // Initial state
 
@@ -83,16 +81,8 @@ export function updateTagsOnListAction(tags) {
   return { type: UPDATE_TAGS_ON_LIST, tags };
 }
 
-export function toggleTagStatusAction(tagId) {
-  return { type: TOGGLE_TAG_STATUS, tagId };
-}
-
 export function deleteTagAction(tagId) {
   return { type: DELETE_TAG, tagId };
-}
-
-export function updateTagAction(values) {
-  return { type: UPDATE_TAG, values };
 }
 
 export function insertNewTagAction(values) {
