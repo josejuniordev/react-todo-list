@@ -7,7 +7,7 @@ import '../App.css';
 
 import { Button, Welcome } from '@storybook/react/demo';
 import TodoListItem from '../components/todo-list/todo-list-item/TodoListItem';
-import tasksMockedData from '../mock/TaskMock';
+import tasksMockedData from '../mock/TasksMock';
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 

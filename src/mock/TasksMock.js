@@ -84,4 +84,6 @@ const tasksMockedData = TasksData.map(task => {
   return TasksUtils.taskFactory(task);
 });
 
+export const mockJsonPromise = Promise.resolve(TasksData);
+
 export default tasksMockedData;

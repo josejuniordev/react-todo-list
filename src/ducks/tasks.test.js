@@ -9,7 +9,7 @@ import taskReducer, {
   INSERT_NEW_TASK, insertNewTaskAction
 } from './tasks';
 
-import TasksMockedData from '../mock/TaskMock';
+import TasksMockedData from '../mock/TasksMock';
 
 describe('(Ducks) Tasks', () => {
 

@@ -13,7 +13,7 @@ import { taskMessages } from "../shared/tasksConstantes";
 import TasksUtils from "../utility/TasksUtils";
 import store from "../store";
 
-function* fetchTasks() {
+export function* fetchTasks() {
   try {
     let tasks = yield call(TasksAPI.fetchTasks);
 
