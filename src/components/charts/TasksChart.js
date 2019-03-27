@@ -3,7 +3,7 @@ import CanvasJSReact from '../../vendor/canvasjs/canvasjs.react';
 import tasksFilterMethods from '../../shared/tasksFilterMethods';
 import { filterTasksMode } from '../../shared/tasksConstantes';
 
-const { CanvasJS, CanvasJSChart } = CanvasJSReact;
+const { CanvasJSChart } = CanvasJSReact;
 
 function TasksChart(
   {

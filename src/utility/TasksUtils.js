@@ -2,7 +2,7 @@ import { taskStatus } from '../shared/tasksConstantes';
 import Task from '../classes/Task';
 import filterMethods from '../shared/tasksFilterMethods';
 import store from '../store';
-import { aMinute, aSecond } from '../shared/timeConstants';
+import { aMinute } from '../shared/timeConstants';
 import moment from 'moment';
 import NotificationAPI from '../integrations/NotificationAPI';
 
@@ -38,7 +38,7 @@ class TasksUtils {
     window.setInterval(() => {
       const { tasks } = store.getState();
       const nowTime = +new Date();
-      
+
       tasks.data.forEach((task) => {
         const taskOriginalDate = moment(task.time);
         const taskDate = moment(task.time);
