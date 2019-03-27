@@ -5,7 +5,7 @@ import { filterTasksMode } from '../../shared/tasksConstantes';
 
 const { CanvasJS, CanvasJSChart } = CanvasJSReact;
 
-function TasksCharts(
+function TasksChart(
   {
     tasks = []
   }
@@ -14,23 +14,23 @@ function TasksCharts(
   const pendingTasksQtd = tasksFilterMethods[filterTasksMode.PENDING](tasks).length;
   const doneTasksQtd = tasksFilterMethods[filterTasksMode.DONE](tasks).length;
 
-  console.log('pendingTasksQtd', pendingTasksQtd)
-  console.log('doneTasksQtd', doneTasksQtd)
+  const pendingTasksPercentage = Math.round(pendingTasksQtd / tasksLength * 100);
+  const doneTasksPercentage = Math.round(doneTasksQtd / tasksLength * 100);
 
   const options = {
     animationEnabled: true,
     exportEnabled: true,
     theme: "light1", // "light1", "dark1", "dark2"
     title:{
-      text: "Quantidade de tasks por situação"
+      text: "Tasks por situação"
     },
     data: [{
       type: "pie",
       indexLabel: "{label}: {y}%",
       startAngle: -90,
       dataPoints: [
-        { y: Math.round(pendingTasksQtd / tasksLength * 100), label: `pendentes (${pendingTasksQtd})` },
-        { y: Math.round(doneTasksQtd / tasksLength * 100), label: `concluídas (${doneTasksQtd})` },
+        { y: doneTasksPercentage, label: `concluídas (${doneTasksQtd})` },
+        { y: pendingTasksPercentage, label: `pendentes (${pendingTasksQtd})` },
       ]
     }]
   };
@@ -42,4 +42,6 @@ function TasksCharts(
   )
 }
 
-export default TasksCharts;
+export default TasksChart;
+
+
