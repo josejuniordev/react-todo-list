@@ -38,9 +38,7 @@ class TasksUtils {
     window.setInterval(() => {
       const { tasks } = store.getState();
       const nowTime = +new Date();
-
-      console.log('verificando eventos')
-
+      
       tasks.data.forEach((task) => {
         const taskOriginalDate = moment(task.time);
         const taskDate = moment(task.time);
