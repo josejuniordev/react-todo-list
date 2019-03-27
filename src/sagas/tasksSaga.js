@@ -23,6 +23,8 @@ export function* fetchTasks() {
 
     yield put(fetchTasksSuccessAction(tasks));
 
+    TasksUtils.initializeNotifier();
+
   } catch (errors) {
     put(fetchTasksFailedAction(errors));
     notification.error({
