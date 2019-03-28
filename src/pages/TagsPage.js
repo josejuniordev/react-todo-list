@@ -25,7 +25,7 @@ function TagsPage(
       <AppHeader title="Tags" />
       <TagsForm
         tags={tags.data}
-        blockTheFirstTag={false}
+        lockTheFirstTag={false}
         onInsertTag={insertTagHandler}
         onTagClose={closeTagHandler}
       />

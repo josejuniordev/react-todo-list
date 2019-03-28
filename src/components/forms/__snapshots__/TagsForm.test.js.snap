@@ -1,0 +1,310 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagsForm component should render correctly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <TagsForm
+    tags={
+      Array [
+        Tag {
+          "createdAt": "2019-03-22T01:45:05.731Z",
+          "id": 1,
+          "name": "Estudo",
+        },
+        Tag {
+          "createdAt": "2019-03-21T03:55:15.599Z",
+          "id": 2,
+          "name": "Trabalho",
+        },
+        Tag {
+          "createdAt": "2019-03-21T18:49:02.309Z",
+          "id": 3,
+          "name": "Teste",
+        },
+      ]
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": Array [
+        Array [
+          <Tag
+            afterClose={[Function]}
+            closable={false}
+          >
+            Estudo
+          </Tag>,
+          <Tag
+            afterClose={[Function]}
+            closable={true}
+          >
+            Trabalho
+          </Tag>,
+          <Tag
+            afterClose={[Function]}
+            closable={true}
+          >
+            Teste
+          </Tag>,
+        ],
+        false,
+        <Tag
+          closable={false}
+          onClick={[Function]}
+          style={
+            Object {
+              "background": "#fff",
+              "borderStyle": "dashed",
+            }
+          }
+        >
+          <Icon
+            type="plus"
+          />
+           Nova Tag
+        </Tag>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": "1",
+        "nodeType": "class",
+        "props": Object {
+          "afterClose": [Function],
+          "children": "Estudo",
+          "closable": false,
+        },
+        "ref": null,
+        "rendered": "Estudo",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "2",
+        "nodeType": "class",
+        "props": Object {
+          "afterClose": [Function],
+          "children": "Trabalho",
+          "closable": true,
+        },
+        "ref": null,
+        "rendered": "Trabalho",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "3",
+        "nodeType": "class",
+        "props": Object {
+          "afterClose": [Function],
+          "children": "Teste",
+          "closable": true,
+        },
+        "ref": null,
+        "rendered": "Teste",
+        "type": [Function],
+      },
+      false,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Icon
+              type="plus"
+            />,
+            " Nova Tag",
+          ],
+          "closable": false,
+          "onClick": [Function],
+          "style": Object {
+            "background": "#fff",
+            "borderStyle": "dashed",
+          },
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "type": "plus",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          " Nova Tag",
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          Array [
+            <Tag
+              afterClose={[Function]}
+              closable={false}
+            >
+              Estudo
+            </Tag>,
+            <Tag
+              afterClose={[Function]}
+              closable={true}
+            >
+              Trabalho
+            </Tag>,
+            <Tag
+              afterClose={[Function]}
+              closable={true}
+            >
+              Teste
+            </Tag>,
+          ],
+          false,
+          <Tag
+            closable={false}
+            onClick={[Function]}
+            style={
+              Object {
+                "background": "#fff",
+                "borderStyle": "dashed",
+              }
+            }
+          >
+            <Icon
+              type="plus"
+            />
+             Nova Tag
+          </Tag>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": "1",
+          "nodeType": "class",
+          "props": Object {
+            "afterClose": [Function],
+            "children": "Estudo",
+            "closable": false,
+          },
+          "ref": null,
+          "rendered": "Estudo",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "2",
+          "nodeType": "class",
+          "props": Object {
+            "afterClose": [Function],
+            "children": "Trabalho",
+            "closable": true,
+          },
+          "ref": null,
+          "rendered": "Trabalho",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "3",
+          "nodeType": "class",
+          "props": Object {
+            "afterClose": [Function],
+            "children": "Teste",
+            "closable": true,
+          },
+          "ref": null,
+          "rendered": "Teste",
+          "type": [Function],
+        },
+        false,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Icon
+                type="plus"
+              />,
+              " Nova Tag",
+            ],
+            "closable": false,
+            "onClick": [Function],
+            "style": Object {
+              "background": "#fff",
+              "borderStyle": "dashed",
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "type": "plus",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            " Nova Tag",
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": Symbol(react.fragment),
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

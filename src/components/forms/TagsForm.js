@@ -9,7 +9,7 @@ let inputRef = React.createRef();
 function TagsForm(
   {
     tags = [],
-    blockTheFirstTag = true,
+    lockTheFirstTag = true,
     onTagClose = () => {},
     onInsertTag = () => {},
   }
@@ -50,7 +50,7 @@ function TagsForm(
           const isLongTag = tag.length > 20;
           let isClosable = index !== 0;
 
-          if (!blockTheFirstTag) {
+          if (!lockTheFirstTag) {
             isClosable = true;
           }
 
@@ -94,7 +94,7 @@ function TagsForm(
 
 TagsForm.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.instanceOf(TagClass)).isRequired,
-  blockTheFirstTag: PropTypes.bool,
+  lockTheFirstTag: PropTypes.bool,
   onTagClose: PropTypes.func,
   onInsertTag: PropTypes.func,
 };
