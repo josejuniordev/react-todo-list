@@ -29,13 +29,13 @@ export function TodoListItem (
       title={date.format("DD/MM/YYYY")}
       actions={[
         <span title={buttonTitle}>
-          <Icon type={buttonIconType} onClick={() => onToggleCheckItem(task.id)} />
+          <Icon className='icon-state' type={buttonIconType} onClick={() => onToggleCheckItem(task.id)} />
         </span>,
         <span title="editar">
-          <Icon type="edit" onClick={() => onEditItem(task.id)} />
+          <Icon className='icon-edit' type="edit" onClick={() => onEditItem(task.id)} />
         </span>,
         <span title="excluir">
-          <Icon type="delete" onClick={() => onDeleteItem(task.id)} />
+          <Icon className='icon-delete' type="delete" onClick={() => onDeleteItem(task.id)} />
         </span>
       ]}
       style={{ width: '100%', marginBottom: 15 }}

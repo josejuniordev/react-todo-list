@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { List } from 'antd';
 import TodoListItem from './todo-list-item/TodoListItem';
@@ -29,14 +29,17 @@ function TodoList(
     };
 
     return (
+      <Fragment>
+        <h2>testando aqui</h2>
         <List
-            grid={{
-                gutter: 16, sm: 1, md: 2, lg: 3, xl: 4
-            }}
-            dataSource={tasks}
-            loading={loading}
-            locale={{emptyText: 'Nenhuma task foi encontrada'}}
-            renderItem={renderTaskListItem}/>
+          grid={{
+            gutter: 16, sm: 1, md: 2, lg: 3, xl: 4
+          }}
+          dataSource={tasks}
+          loading={loading}
+          locale={{emptyText: 'Nenhuma task foi encontrada'}}
+          renderItem={renderTaskListItem}/>
+      </Fragment>
     );
 }
 
