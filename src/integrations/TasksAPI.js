@@ -1,11 +1,9 @@
-import { apiEndpoint } from './Defaults';
+import { apiEndpoint, fetchTasksUrl } from './Defaults';
 
 class TasksAPI {
   static fetchTasks() {
-    const url = `${apiEndpoint}/tasks`;
-
     return new Promise((resolve, reject) => {
-      fetch(url)
+      fetch(fetchTasksUrl)
         .then(data => data.json())
         .then(resolve)
         .catch(reject);
