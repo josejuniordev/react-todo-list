@@ -1,4 +1,4 @@
-import React, { Fragment, lazy, Suspense, useState } from 'react';
+import React, { Fragment, lazy, Suspense, useState, memo } from 'react';
 import AppHeader from "../components/generics/AppHeader";
 import { connect } from "react-redux";
 import { deleteTaskAction, insertNewTaskAction, toggleTaskStatusAction, updateTaskAction } from '../ducks/tasks';
@@ -125,7 +125,7 @@ function TodoListPage(
   )
 }
 
-export default connect(
+const connectedComponent = connect(
   ({tasks, tags}) => {
     return {tasks, tags}
   },
@@ -146,3 +146,5 @@ export default connect(
     }
   })
 )(TodoListPage);
+
+export default memo(connectedComponent);

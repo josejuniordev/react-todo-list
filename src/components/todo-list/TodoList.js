@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, memo } from 'react';
 import PropTypes from 'prop-types';
 import { List } from 'antd';
 import TodoListItem from './todo-list-item/TodoListItem';
@@ -51,4 +51,4 @@ TodoList.propTypes = {
     onEditItemHandler: PropTypes.func,
 };
 
-export default TodoList;
+export default memo(TodoList);

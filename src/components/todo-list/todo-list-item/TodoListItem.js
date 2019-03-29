@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Icon } from 'antd';
 import Task from '../../../classes/Task';
@@ -56,4 +56,4 @@ TodoListItem.propTypes = {
   onEditItem: PropTypes.func,
 };
 
-export default TodoListItem;
+export default memo(TodoListItem);

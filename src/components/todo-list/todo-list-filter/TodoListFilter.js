@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState, memo } from 'react';
 import PropTypes from 'prop-types';
 import { filterTasksMode } from '../../../shared/tasksConstantes';
 import TasksUtils from '../../../utility/TasksUtils';
@@ -79,4 +79,4 @@ TodoListFilter.propTypes = {
   onFilter: PropTypes.func
 };
 
-export default TodoListFilter;
+export default memo(TodoListFilter);

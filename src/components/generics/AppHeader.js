@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from 'react';
 import PropTypes from "prop-types";
 
 function AppHeader(
@@ -17,4 +17,4 @@ AppHeader.propTypes = {
   title: PropTypes.string.isRequired
 };
 
-export default AppHeader;
+export default memo(AppHeader);
