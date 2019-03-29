@@ -1,4 +1,4 @@
-import { apiEndpoint, fetchTasksUrl } from './Defaults';
+import { fetchTasksUrl } from './Defaults';
 
 class TasksAPI {
   static fetchTasks() {

@@ -2,8 +2,8 @@ import TasksAPI from '../integrations/TasksAPI';
 import { fetchTasksUrl } from './Defaults';
 
 describe('TasksAPI class', () => {
-  test('calls fetch api', () => {
 
+  test('calls fetch api', () => {
     const spy = jest.spyOn(global, 'fetch');
 
     TasksAPI.fetchTasks();
@@ -13,4 +13,5 @@ describe('TasksAPI class', () => {
 
     spy.mockRestore();
   });
+
 });
