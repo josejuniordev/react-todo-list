@@ -36,7 +36,7 @@ function App(
   }, [initialized]);
 
   return (
-    <BrowserRouter basename="/react-todo-list">
+    <BrowserRouter basename="">
       <Layout>
         <Sider>
           <div className="logo"></div>

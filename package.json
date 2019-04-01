@@ -2,10 +2,13 @@
   "name": "react-todo-list",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://josejuniordev.github.io/react-todo-list",
+  "homepage": "",
   "dependencies": {
     "antd": "^3.15.1",
+    "express": "^4.16.4",
+    "express-favicon": "^2.0.1",
     "moment": "^2.24.0",
+    "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
@@ -20,7 +23,7 @@
     "weak": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --coverage",
