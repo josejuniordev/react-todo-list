@@ -1,5 +1,5 @@
 ## Demo
-you can see this project running by accessing [https://jr-react-todo-list.herokuapp.com](this heroku project)
+you can see this project running by accessing [this heroku project](https://jr-react-todo-list.herokuapp.com).
 
 ## Available Scripts
 
