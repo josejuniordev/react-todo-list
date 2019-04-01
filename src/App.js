@@ -36,7 +36,7 @@ function App(
   }, [initialized]);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/react-todo-list">
       <Layout>
         <Sider>
           <div className="logo"></div>
@@ -44,15 +44,15 @@ function App(
           <Menu theme="dark" defaultSelectedKeys={[selectedLink]} mode="inline">
             <Menu.Item key="home">
               <Icon type="pie-chart" />
-              <Link to="/"><span>Dashboard</span></Link>
+              <Link to={`${process.env.PUBLIC_URL}/`}><span>Dashboard</span></Link>
             </Menu.Item>
             <Menu.Item key="todo-list">
               <Icon type="desktop" />
-              <Link to="/todo-list"><span>Todo list</span></Link>
+              <Link to={`${process.env.PUBLIC_URL}/todo-list`}><span>Todo list</span></Link>
             </Menu.Item>
             <Menu.Item key="tags">
               <Icon type="tags" />
-              <Link to="/tags"><span>Tags</span></Link>
+              <Link to={`${process.env.PUBLIC_URL}/tags`}><span>Tags</span></Link>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -63,9 +63,9 @@ function App(
                 fallback={<Spin />}
               >
                 <Switch>
-                  <Route exact path="/" component={() => <DashboardPage appInitialized={initialized} />} />
-                  <Route path="/todo-list" component={() => <TodoListPage appInitialized={initialized} />} />
-                  <Route path="/tags" component={() => <TagsPage appInitialized={initialized} />} />
+                  <Route exact path={`${process.env.PUBLIC_URL}/`} component={() => <DashboardPage appInitialized={initialized} />} />
+                  <Route path={`${process.env.PUBLIC_URL}/todo-list`} component={() => <TodoListPage appInitialized={initialized} />} />
+                  <Route path={`${process.env.PUBLIC_URL}/tags`} component={() => <TagsPage appInitialized={initialized} />} />
                 </Switch>
               </Suspense>
             </article>
